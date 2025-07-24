@@ -1,0 +1,10 @@
+/* .driver__container {
+    width: 100vw;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.deriver__card {
+  display: flex;
+  flex-direction: column;
+} */
