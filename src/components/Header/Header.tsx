@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import f1__logo from "../image/f1__logo.jpg";
+import f1__logo from "../../image/f1__logo.jpg";
 import styles from "./Header.module.css";
 export default function Header() {
   return (
@@ -9,16 +9,16 @@ export default function Header() {
       </button>
 
       <nav className={styles.wrapper__menu}>
-        <Link className={styles.menu_link} to="/drivers">
+        <Link className={styles.menu__link} to="/drivers">
           드라이버
         </Link>
-        <Link className={styles.menu_link} to="/teams">
+        <Link className={styles.menu__link} to="/teams">
           팀
         </Link>
-        <Link className={styles.menu_link} to="/ranking">
+        <Link className={styles.menu__link} to="/ranking">
           랭킹
         </Link>
-        <Link className={styles.menu_link} to="/races">
+        <Link className={styles.menu__link} to="/races">
           경기일정
         </Link>
       </nav>

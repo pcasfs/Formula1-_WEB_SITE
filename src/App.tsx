@@ -1,8 +1,8 @@
 import { Suspense } from "react";
-import Drivers from "./pages/Drivers/index";
+// import Drivers from "./pages/Drivers/index";
 import Home from "./pages/Home";
 import { Route, Routes } from "react-router-dom";
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 
 function App() {
   return (

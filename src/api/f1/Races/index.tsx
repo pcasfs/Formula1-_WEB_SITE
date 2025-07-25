@@ -1,8 +1,8 @@
-import { BASE_URL } from "../../../constants/api";
+import { F1_BASE_URL } from "../../../constants/f1Api";
 import type { RaceData } from "./entity";
 
 async function fetchRaceSchedules(): Promise<RaceData[]> {
-  const url = `${BASE_URL}races?season=2025`;
+  const url = `${F1_BASE_URL}races?season=2025`;
   const res = await fetch(url, {
     headers: {
       "x-rapidapi-host": "v1.formula-1.api-sports.io",

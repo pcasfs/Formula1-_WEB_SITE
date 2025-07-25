@@ -14,7 +14,7 @@
   color: white;
 }
 
-.menu_link {
+.menu__link {
   color: white;
   font-size: 22px;
   font-weight: 600;
@@ -23,7 +23,7 @@
   padding-bottom: 2px;
 }
 
-.menu_link::after {
+.menu__link::after {
   content: "";
   position: absolute;
   left: 0;
@@ -34,7 +34,7 @@
   transition: all 0.3s ease-in-out;
 }
 
-.menu_link:hover::after {
+.menu__link:hover::after {
   width: 100%;
 }
 

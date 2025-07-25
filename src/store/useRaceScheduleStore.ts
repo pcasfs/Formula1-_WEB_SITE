@@ -3,7 +3,8 @@ import type { RaceData } from "../api/f1/Races/entity";
 import { getDateRange } from "../utils/getDateRange";
 
 type RaceSummary = {
-  name: string;
+  gpName: string;
+  countryName: string;
   dateRange: string;
 };
 
@@ -27,6 +28,7 @@ export const useRaceScheduleStore = create<RaceScheduleState>((set) => ({
     const nextSession = sessions.find((s) => new Date(s.date) > now);
     if (!nextSession) return;
     const gpName = nextSession.competition.name;
+    const country = nextSession.competition.location.country;
 
     const gpSessions = sessions.filter((s) => s.competition.name === gpName);
     const sessionDates = gpSessions.map((s) => new Date(s.date).getTime());
@@ -37,7 +39,8 @@ export const useRaceScheduleStore = create<RaceScheduleState>((set) => ({
     const gpDateRange = getDateRange(start, end);
 
     const currentRace: RaceSummary = {
-      name: gpName,
+      gpName: gpName,
+      countryName: country,
       dateRange: gpDateRange,
     };
 
@@ -53,6 +56,7 @@ export const useRaceScheduleStore = create<RaceScheduleState>((set) => ({
         nextRace = currentRace;
       } else {
         const nextNextGpName = nextNextSession.competition.name;
+        const nextNexCountry = nextNextSession.competition.location.country;
         const nextNextSessions = sessions.filter(
           (s) => s.competition.name === nextNextGpName
         );
@@ -61,7 +65,8 @@ export const useRaceScheduleStore = create<RaceScheduleState>((set) => ({
         const end = new Date(Math.max(...dates));
 
         nextRace = {
-          name: nextNextGpName,
+          gpName: nextNextGpName,
+          countryName: nextNexCountry,
           dateRange: getDateRange(start, end),
         };
       }
@@ -71,7 +76,7 @@ export const useRaceScheduleStore = create<RaceScheduleState>((set) => ({
 
     //Upcoming Race
     let upcomingRace: RaceSummary | null = null;
-    const baseGpName = isNow ? nextRace.name : gpName;
+    const baseGpName = isNow ? nextRace.gpName : gpName;
     const baseGpIndex = sessions.findIndex(
       (s) => s.competition.name === baseGpName
     );
@@ -81,6 +86,7 @@ export const useRaceScheduleStore = create<RaceScheduleState>((set) => ({
 
     if (upcomingSession) {
       const upcomingGpName = upcomingSession.competition.name;
+      const upcomingCountry = upcomingSession.competition.location.country;
       const upcomingSessions = sessions.filter(
         (s) => s.competition.name === upcomingGpName
       );
@@ -91,7 +97,8 @@ export const useRaceScheduleStore = create<RaceScheduleState>((set) => ({
       const end = new Date(Math.max(...upcomingDates));
 
       upcomingRace = {
-        name: upcomingGpName,
+        gpName: upcomingGpName,
+        countryName: upcomingCountry,
         dateRange: getDateRange(start, end),
       };
     }
@@ -100,10 +107,11 @@ export const useRaceScheduleStore = create<RaceScheduleState>((set) => ({
     let previousRace: RaceSummary | null = null;
     const previousSession = [...sessions]
       .reverse()
-      .find((s) => new Date(s.date) < now);
+      .find((s) => new Date(s.date) < now && s.competition.name !== gpName);
 
     if (previousSession) {
       const previousGpName = previousSession.competition.name;
+      const previousCountry = previousSession.competition.location.country;
       const previousSessions = sessions.filter(
         (s) => s.competition.name === previousGpName
       );
@@ -114,7 +122,8 @@ export const useRaceScheduleStore = create<RaceScheduleState>((set) => ({
       const prevEnd = new Date(Math.max(...previousDates));
 
       previousRace = {
-        name: previousGpName,
+        gpName: previousGpName,
+        countryName: previousCountry,
         dateRange: getDateRange(prevStart, prevEnd),
       };
     }
