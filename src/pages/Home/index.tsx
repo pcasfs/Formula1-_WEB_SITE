@@ -1,9 +1,9 @@
 import { Suspense, useEffect } from "react";
 import useGetRaceSchedules from "./hooks/useGetRaceSchedules";
 import { useRaceScheduleStore } from "../../store/useRaceScheduleStore";
-import CountryFlagDisplay from "../../components/FlagImage/FlagImage";
 import styles from "./Home.module.css";
 import HomeSkeleton from "./skeletons/HomeSkeleton";
+import FlagImage from "../../components/FlagImage/FlagImage";
 
 export default function Home() {
   const { data: raceScheduleData } = useGetRaceSchedules();
@@ -35,7 +35,10 @@ export default function Home() {
             <p className={styles["schedule-summary__gp-name"]}>
               {previousRace?.gpName}
             </p>
-            <CountryFlagDisplay countryName={previousRace?.countryName} />
+            <FlagImage
+              className={styles["schedule-summary__FlagImage"]}
+              countryName={previousRace?.countryName}
+            />
             <p className={styles["schedule-summary__date-range"]}>
               {previousRace?.dateRange}
             </p>
@@ -61,7 +64,7 @@ export default function Home() {
               <p className={styles["schedule-summary__gp-name"]}>
                 {nowRace.gpName}
               </p>
-              <CountryFlagDisplay countryName={nowRace?.countryName} />
+              <FlagImage countryName={nowRace?.countryName} />
               <p className={styles["schedule-summary__date-range"]}>
                 {nowRace.dateRange}
               </p>
@@ -87,7 +90,10 @@ export default function Home() {
             <p className={styles["schedule-summary__gp-name"]}>
               {nextRace?.gpName}
             </p>
-            <CountryFlagDisplay countryName={nextRace?.countryName} />
+            <FlagImage
+              className={styles["schedule-summary__FlagImage"]}
+              countryName={nextRace?.countryName}
+            />
             <p className={styles["schedule-summary__date-range"]}>
               {nextRace?.dateRange}
             </p>
@@ -100,7 +106,10 @@ export default function Home() {
             <p className={styles["schedule-summary__gp-name"]}>
               {upcomingRace?.gpName}
             </p>
-            <CountryFlagDisplay countryName={upcomingRace?.countryName} />
+            <FlagImage
+              className={styles["schedule-summary__FlagImage"]}
+              countryName={upcomingRace?.countryName}
+            />
             <p className={styles["schedule-summary__date-range"]}>
               {upcomingRace?.dateRange}
             </p>

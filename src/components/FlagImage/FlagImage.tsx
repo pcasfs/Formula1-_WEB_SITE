@@ -1,25 +1,30 @@
 // components/FlagImage.tsx
 import { Suspense } from "react";
-import useGetCountryFlag from "../../pages/Home/hooks/useGetCountryFlag";
-import styles from "./FlagImage.module.css";
+import useGetCountryFlag from "../../hooks/useGetCountryFlag";
+import styles from "../Skeletons/Skeletons.module.css";
 
-function CountryFlagDisplay({ countryName }: { countryName: string }) {
+type FlagImageProps = {
+  countryName: string;
+  className?: string;
+};
+
+function CountryFlagDisplay({ countryName, className }: FlagImageProps) {
   const { data: countryFlagUrl } = useGetCountryFlag(countryName);
   return (
     <img
-      className={styles["flag-image"]}
+      className={className}
       src={countryFlagUrl ?? undefined}
       alt={`${countryName} flag`}
     />
   );
 }
 
-export default function FlagImage({ countryName }: { countryName: string }) {
+export default function FlagImage({ countryName, className }: FlagImageProps) {
   if (!countryName) return null;
 
   return (
-    <Suspense fallback={<div>국기 로딩 중...</div>}>
-      <CountryFlagDisplay countryName={countryName} />
+    <Suspense fallback={<div className={`${className} ${styles.skeletons}`} />}>
+      <CountryFlagDisplay countryName={countryName} className={className} />
     </Suspense>
   );
 }

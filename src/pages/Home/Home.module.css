@@ -51,6 +51,11 @@
   color: white;
 }
 
+.schedule-summary__FlagImage {
+  width: 200px;
+  height: 120px;
+}
+
 .schedule-summary__date-range {
   font-size: 22px;
   color: white;
