@@ -1,20 +1,19 @@
-import { Suspense } from "react";
-// import Drivers from "./pages/Drivers/index";
+import Drivers from "./pages/Drivers/index";
 import Home from "./pages/Home";
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header/Header";
-import HomeSkeleton from "./pages/Home/skeletons/HomeSkeleton";
+import { ErrorBoundary } from "react-error-boundary";
 
 function App() {
   return (
     <>
       <Header />
-      <Suspense fallback={<HomeSkeleton />}>
+      <ErrorBoundary fallback={<div>에러발생!</div>}>
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Drivers /> */}
+          <Route path="/drivers" element={<Drivers />} />
         </Routes>
-      </Suspense>
+      </ErrorBoundary>
     </>
   );
 }

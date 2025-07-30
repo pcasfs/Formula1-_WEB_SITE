@@ -1,8 +1,8 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import fetchDrivers from "../../../api/f1/Drivers";
 
 function useGetDrivers() {
-  return useSuspenseQuery({
+  return useQuery({
     queryKey: ["drivers"],
     queryFn: fetchDrivers,
   });

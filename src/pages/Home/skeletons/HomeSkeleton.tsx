@@ -1,4 +1,4 @@
-import Skeleton from "../../../components/common/Skeletons";
+import Skeleton from "../../../components/Skeletons/Skeletons";
 import styles from "../Home.module.css";
 
 export default function HomeSkeleton() {

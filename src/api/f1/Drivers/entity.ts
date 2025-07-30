@@ -1,12 +1,13 @@
 export type DriverData = {
+  position: string;
   driver: {
     id: number;
     name: string;
     image: string;
-    number: number;
   };
   team: {
     name: string;
     logo: string;
   };
+  points: number;
 };

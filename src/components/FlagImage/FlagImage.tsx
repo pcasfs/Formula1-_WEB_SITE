@@ -1,6 +1,4 @@
-// components/FlagImage.tsx
-import { Suspense } from "react";
-import useGetCountryFlag from "../../hooks/useGetCountryFlag";
+import useGetCountryFlag from "../../pages/Home/hooks/useGetCountryFlag";
 import styles from "../Skeletons/Skeletons.module.css";
 
 type FlagImageProps = {
@@ -8,23 +6,14 @@ type FlagImageProps = {
   className?: string;
 };
 
-function CountryFlagDisplay({ countryName, className }: FlagImageProps) {
-  const { data: countryFlagUrl } = useGetCountryFlag(countryName);
-  return (
-    <img
-      className={className}
-      src={countryFlagUrl ?? undefined}
-      alt={`${countryName} flag`}
-    />
-  );
-}
-
 export default function FlagImage({ countryName, className }: FlagImageProps) {
-  if (!countryName) return null;
+  const { data: flagUrl, isLoading } = useGetCountryFlag(countryName);
 
-  return (
-    <Suspense fallback={<div className={`${className} ${styles.skeletons}`} />}>
-      <CountryFlagDisplay countryName={countryName} className={className} />
-    </Suspense>
-  );
+  if (!countryName || isLoading) {
+    return <div className={`${className} ${styles.skeletons}`} />;
+  }
+
+  if (!flagUrl) return null;
+
+  return <img className={className} src={flagUrl} alt={countryName} />;
 }

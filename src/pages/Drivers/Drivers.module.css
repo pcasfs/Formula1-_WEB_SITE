@@ -1,10 +1,67 @@
-/* .driver__container {
-    width: 100vw;
+.driver-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.deriver__card {
+.driver-card {
+  border: 1px solid gray;
   display: flex;
   flex-direction: column;
-} */
+  border-radius: 12px;
+  box-shadow: 0px 0px 5px gray;
+  cursor: pointer;
+  background-color: rgb(228, 225, 225);
+}
+
+.driver-card:hover {
+  transform: translateY(-10px);
+  transition: transform 0.2s ease;
+}
+
+.driver-card__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 2px;
+  margin: 8px 5px;
+}
+
+.driver-card__ranking {
+  font-size: 50px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.driver-card__points {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+  padding-bottom: 5px;
+}
+
+.driver-card__flag {
+  width: 50px;
+  height: 30px;
+  padding: 8px;
+}
+
+.driver-card__image {
+  margin-bottom: 7px;
+}
+
+.driver-card__team,
+.driver-card__name {
+  font-size: 18px;
+  padding: 2px;
+  margin: 5px;
+  font-weight: 500;
+}
+
+.driver-card__name {
+  margin-bottom: 12px;
+}
