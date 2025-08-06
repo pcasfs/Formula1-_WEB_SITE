@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { DriverData } from "../api/f1/Drivers/entity";
+import type { DriverData } from "../api/f1/Ranking/RankingDrivers/entity";
 
 type DriverState = {
   drivers: DriverData[];
