@@ -1,4 +1,4 @@
-import useGetCountryFlag from "../../pages/Home/hooks/useGetCountryFlag";
+import useGetCountryFlag from "../../hooks/useGetCountryFlag";
 import styles from "../Skeletons/Skeletons.module.css";
 
 type FlagImageProps = {
@@ -13,7 +13,7 @@ export default function FlagImage({ countryName, className }: FlagImageProps) {
     return <div className={`${className} ${styles.skeletons}`} />;
   }
 
-  if (!flagUrl) return null;
+  if (!flagUrl) return "국기정보 없음";
 
   return <img className={className} src={flagUrl} alt={countryName} />;
 }
