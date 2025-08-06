@@ -1,4 +1,4 @@
-.container__header {
+.header {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -7,14 +7,14 @@
   background-color: #15151f;
 }
 
-.wrapper__menu {
+.header__menu {
   display: flex;
   flex-direction: row;
   gap: 30px;
   color: white;
 }
 
-.menu__link {
+.header__menu-link {
   color: white;
   font-size: 22px;
   font-weight: 600;
@@ -23,7 +23,7 @@
   padding-bottom: 2px;
 }
 
-.menu__link::after {
+.header__menu-link::after {
   content: "";
   position: absolute;
   left: 0;
@@ -34,11 +34,11 @@
   transition: all 0.3s ease-in-out;
 }
 
-.menu__link:hover::after {
+.header__menu-link:hover::after {
   width: 100%;
 }
 
-.f1__logo {
+.header__logo {
   border: none;
   width: 170px;
   height: 150px;
@@ -48,4 +48,5 @@
 button {
   padding: 0;
   border: none;
+  cursor: pointer;
 }
