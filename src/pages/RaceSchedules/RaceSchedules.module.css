@@ -1,0 +1,143 @@
+.race-schedules-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.race-schedules {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0px auto;
+}
+
+.race-schedules__next-button {
+  max-width: 1400px;
+  border: 1px solid gray;
+  box-shadow: 0px 0px 5px gray;
+  border-radius: 12px;
+  font-size: 22px;
+  font-weight: 500;
+  width: 100%;
+  height: 70px;
+  margin: 25px auto;
+  cursor: pointer;
+}
+
+.race-schedules__next-button:hover {
+  background-color: rgb(196, 195, 195);
+}
+
+.race-schedules__flag {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid gray;
+  margin-right: 3px;
+}
+
+.race-schedules__card {
+  border: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-radius: 12px;
+  box-shadow: 0px 0px 5px gray;
+  background-color: white;
+  padding: 20px;
+}
+
+.race-schedules__card-round {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.race-schedules__badge--now,
+.race-schedules__badge--next {
+  width: 100px;
+  height: 30px;
+  border-radius: 12px;
+  font-size: 18px;
+  text-align: center;
+  font-weight: 600;
+  margin-top: 35px;
+}
+
+.race-schedules__badge--now {
+  background-color: red;
+  box-shadow: 0px 0px 5px black;
+  color: white;
+}
+
+.race-schedules__badge--next {
+  background-color: yellow;
+  box-shadow: 0px 0px 5px rgb(42, 42, 168);
+  color: rgb(42, 42, 168);
+}
+
+.race-schedules__card h2 {
+  margin-bottom: 5px;
+}
+
+.race-schedules__card p {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.race-schedules__circuit-button {
+  background-color: white;
+}
+
+.race-schedules__circuit-image {
+  width: 250px;
+  height: 180px;
+  margin: 15px;
+  transition-duration: 0.3s;
+  cursor: pointer;
+}
+
+.race-schedules__circuit-image:hover {
+  transform: scale(1.1);
+  transition-duration: 0.5s;
+}
+
+.race-schedules__sessions-info {
+  width: 100%;
+  list-style-type: none;
+  border-top: 1px solid gray;
+  padding: 0;
+}
+
+.race-schedules__sessions-info li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.race-schedules__sessions-info span {
+  padding: 6px;
+}
+
+.race-schedules__result-button {
+  width: 100%;
+  padding: 16px;
+  background-color: white;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 6px auto;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0px 0px 5px gray;
+}
+
+.race-schedules__result-button:hover {
+  background-color: rgb(196, 195, 195);
+  box-shadow: 0px 0px 5px black;
+}
