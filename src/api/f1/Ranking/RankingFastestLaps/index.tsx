@@ -1,8 +1,10 @@
-import { F1_BASE_URL } from "../../../constants/f1Api";
-import type { DriverDetailData } from "./entity";
+import { F1_BASE_URL } from "../../../../constants/f1Api";
+import type { FastestLapData } from "./entity";
 
-async function fetchDriverDetail(driverId: number): Promise<DriverDetailData> {
-  const url = `${F1_BASE_URL}drivers?id=${driverId}`;
+async function fetchRankingFastestLab(
+  raceId: number
+): Promise<FastestLapData[]> {
+  const url = `${F1_BASE_URL}rankings/fastestlaps?race=${raceId}`;
   try {
     const res = await fetch(url, {
       headers: {
@@ -17,11 +19,11 @@ async function fetchDriverDetail(driverId: number): Promise<DriverDetailData> {
     if (data.error) {
       throw new Error(`API 오류 ${data.error}`);
     }
-    return data.response[0];
+    return data.response;
   } catch (error) {
     console.error(error);
     throw new Error(`오류 발생! ${error.message}`);
   }
 }
 
-export default fetchDriverDetail;
+export default fetchRankingFastestLab;

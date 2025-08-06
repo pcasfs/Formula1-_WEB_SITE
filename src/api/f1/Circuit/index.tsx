@@ -1,8 +1,8 @@
 import { F1_BASE_URL } from "../../../constants/f1Api";
-import type { DriverDetailData } from "./entity";
+import type { CircuitData } from "./entity";
 
-async function fetchDriverDetail(driverId: number): Promise<DriverDetailData> {
-  const url = `${F1_BASE_URL}drivers?id=${driverId}`;
+async function fetchCircuit(circuitId: number): Promise<CircuitData> {
+  const url = `${F1_BASE_URL}circuits?id=${circuitId}`;
   try {
     const res = await fetch(url, {
       headers: {
@@ -24,4 +24,4 @@ async function fetchDriverDetail(driverId: number): Promise<DriverDetailData> {
   }
 }
 
-export default fetchDriverDetail;
+export default fetchCircuit;

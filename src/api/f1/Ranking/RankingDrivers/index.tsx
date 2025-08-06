@@ -1,8 +1,8 @@
-import { F1_BASE_URL } from "../../../constants/f1Api";
+import { F1_BASE_URL } from "../../../../constants/f1Api";
 import type { DriverData } from "./entity";
 
-async function fetchDrivers(): Promise<DriverData[]> {
-  const url = `${F1_BASE_URL}rankings/drivers?season=2025`;
+async function fetchDrivers(season: number): Promise<DriverData[]> {
+  const url = `${F1_BASE_URL}rankings/drivers?season=${season}`;
   try {
     const res = await fetch(url, {
       headers: {
@@ -11,9 +11,12 @@ async function fetchDrivers(): Promise<DriverData[]> {
       },
     });
     if (!res.ok) {
-      throw new Error(`HTTP 오류${res.status}`);
+      throw new Error(`HTTP 오류 ${res.status}`);
     }
     const data = await res.json();
+    if (data.error) {
+      throw new Error(`API 오류 ${data.error}`);
+    }
     return data.response;
   } catch (error) {
     console.error(error);

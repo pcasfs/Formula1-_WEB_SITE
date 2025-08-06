@@ -6,12 +6,19 @@ async function fetchCountryFlag(countryName: string): Promise<CountryData> {
   try {
     const res = await fetch(url);
     if (!res.ok) {
-      throw new Error(`HTTP 오류${res.status}`);
+      throw new Error(`HTTP 오류 ${res.status}`);
     }
     const data = await res.json();
+    if (data.error) {
+      throw new Error(`API 오류 ${data.error}`);
+    }
+    const normalizedCountryName =
+      countryName === "USA" ? "United States" : countryName;
+
     const country = data.find(
       (country: CountryData) =>
-        country.name.common.toLowerCase() === countryName.toLowerCase()
+        country.name.common.toLowerCase() ===
+        normalizedCountryName.toLowerCase()
     );
 
     return country?.flags?.png ?? null;

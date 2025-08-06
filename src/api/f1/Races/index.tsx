@@ -11,9 +11,12 @@ async function fetchRaceSchedules(): Promise<RaceData[]> {
       },
     });
     if (!res.ok) {
-      throw new Error(`HTTP 오류${res.status}`);
+      throw new Error(`HTTP 오류 ${res.status}`);
     }
     const data = await res.json();
+    if (data.error) {
+      throw new Error(`API 오류 ${data.error}`);
+    }
     return data.response;
   } catch (error) {
     console.error(error);

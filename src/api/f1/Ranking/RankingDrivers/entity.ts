@@ -10,4 +10,6 @@ export type DriverData = {
     logo: string;
   };
   points: number;
+  wins: number;
+  behind: number;
 };
