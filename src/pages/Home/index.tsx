@@ -1,12 +1,12 @@
-import { Suspense, useEffect } from "react";
-import useGetRaceSchedules from "./hooks/useGetRaceSchedules";
+import { useEffect } from "react";
+import useGetRaceSchedules from "../../hooks/useGetRaceSchedules";
 import { useRaceScheduleStore } from "../../store/useRaceScheduleStore";
 import styles from "./Home.module.css";
 import HomeSkeleton from "./skeletons/HomeSkeleton";
 import FlagImage from "../../components/FlagImage/FlagImage";
 
 export default function Home() {
-  const { data: raceScheduleData } = useGetRaceSchedules();
+  const { data: raceScheduleData, isLoading, isError } = useGetRaceSchedules();
   const { nowRace, nextRace, upcomingRace, previousRace, setRaceStatus } =
     useRaceScheduleStore();
 
@@ -26,96 +26,103 @@ export default function Home() {
     highlightTarget = null;
   }
 
-  return (
-    <Suspense fallback={<HomeSkeleton />}>
-      <div className={styles["schedule-summary"]}>
-        <div className={styles["schedule-summary__section"]}>
-          <h1 className={styles["schedule-summary__title"]}>Previous</h1>
-          <div className={styles["schedule-summary__card"]}>
-            <p className={styles["schedule-summary__gp-name"]}>
-              {previousRace?.gpName}
-            </p>
-            <FlagImage
-              className={styles["schedule-summary__FlagImage"]}
-              countryName={previousRace?.countryName}
-            />
-            <p className={styles["schedule-summary__date-range"]}>
-              {previousRace?.dateRange}
-            </p>
-          </div>
+  if (isError) {
+    return <div>오류발생!</div>;
+  }
+
+  return isLoading ? (
+    <HomeSkeleton />
+  ) : (
+    <div className={styles["schedule-summary"]}>
+      <div className={styles["schedule-summary__section"]}>
+        <h1 className={styles["schedule-summary__title"]}>Previous</h1>
+        <div className={styles["schedule-summary__card"]}>
+          <p className={styles["schedule-summary__gp-name"]}>
+            {previousRace?.gpName}
+          </p>
+          <FlagImage
+            className={styles["schedule-summary__FlagImage"]}
+            countryName={previousRace?.countryName}
+          />
+          <p className={styles["schedule-summary__date-range"]}>
+            {previousRace?.dateRange}
+          </p>
         </div>
+      </div>
 
-        {nowRace && (
-          <div
-            className={`${styles["schedule-summary__section"]} ${
-              highlightTarget === "now"
-                ? styles["schedule-summary__section--highlight"]
-                : ""
-            }`}
-          >
-            <h1 className={styles["schedule-summary__title"]}>Now</h1>
-            <div
-              className={`${styles["schedule-summary__card"]} ${
-                highlightTarget === "now"
-                  ? styles["schedule-summary__card--highlight"]
-                  : ""
-              }`}
-            >
-              <p className={styles["schedule-summary__gp-name"]}>
-                {nowRace.gpName}
-              </p>
-              <FlagImage countryName={nowRace?.countryName} />
-              <p className={styles["schedule-summary__date-range"]}>
-                {nowRace.dateRange}
-              </p>
-            </div>
-          </div>
-        )}
-
+      {nowRace && (
         <div
           className={`${styles["schedule-summary__section"]} ${
-            highlightTarget === "next"
+            highlightTarget === "now"
               ? styles["schedule-summary__section--highlight"]
               : ""
           }`}
         >
-          <h1 className={styles["schedule-summary__title"]}>Next</h1>
+          <h1 className={styles["schedule-summary__title"]}>Now</h1>
           <div
             className={`${styles["schedule-summary__card"]} ${
-              highlightTarget === "next"
+              highlightTarget === "now"
                 ? styles["schedule-summary__card--highlight"]
                 : ""
             }`}
           >
             <p className={styles["schedule-summary__gp-name"]}>
-              {nextRace?.gpName}
+              {nowRace.gpName}
             </p>
             <FlagImage
               className={styles["schedule-summary__FlagImage"]}
-              countryName={nextRace?.countryName}
+              countryName={nowRace?.countryName}
             />
             <p className={styles["schedule-summary__date-range"]}>
-              {nextRace?.dateRange}
+              {nowRace.dateRange}
             </p>
           </div>
         </div>
+      )}
 
-        <div className={styles["schedule-summary__section"]}>
-          <h1 className={styles["schedule-summary__title"]}>Upcoming</h1>
-          <div className={styles["schedule-summary__card"]}>
-            <p className={styles["schedule-summary__gp-name"]}>
-              {upcomingRace?.gpName}
-            </p>
-            <FlagImage
-              className={styles["schedule-summary__FlagImage"]}
-              countryName={upcomingRace?.countryName}
-            />
-            <p className={styles["schedule-summary__date-range"]}>
-              {upcomingRace?.dateRange}
-            </p>
-          </div>
+      <div
+        className={`${styles["schedule-summary__section"]} ${
+          highlightTarget === "next"
+            ? styles["schedule-summary__section--highlight"]
+            : ""
+        }`}
+      >
+        <h1 className={styles["schedule-summary__title"]}>Next</h1>
+        <div
+          className={`${styles["schedule-summary__card"]} ${
+            highlightTarget === "next"
+              ? styles["schedule-summary__card--highlight"]
+              : ""
+          }`}
+        >
+          <p className={styles["schedule-summary__gp-name"]}>
+            {nextRace?.gpName}
+          </p>
+          <FlagImage
+            className={styles["schedule-summary__FlagImage"]}
+            countryName={nextRace?.countryName}
+          />
+          <p className={styles["schedule-summary__date-range"]}>
+            {nextRace?.dateRange}
+          </p>
         </div>
       </div>
-    </Suspense>
+
+      <div className={styles["schedule-summary__section"]}>
+        <h1 className={styles["schedule-summary__title"]}>Upcoming</h1>
+        <div className={styles["schedule-summary__card"]}>
+          <p className={styles["schedule-summary__gp-name"]}>
+            {upcomingRace?.gpName}
+          </p>
+          <FlagImage
+            className={styles["schedule-summary__FlagImage"]}
+            countryName={upcomingRace?.countryName}
+          />
+          <p className={styles["schedule-summary__date-range"]}>
+            {upcomingRace?.dateRange}
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }
