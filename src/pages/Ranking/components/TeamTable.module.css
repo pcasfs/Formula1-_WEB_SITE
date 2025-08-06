@@ -1,0 +1,27 @@
+.ranking-table__team {
+  width: 100%;
+}
+
+.ranking-table__team-info {
+  display: flex;
+  align-items: center;
+}
+
+.ranking-table__team-info img {
+  width: 200px;
+  height: 100px;
+  padding-right: 30px;
+}
+
+.ranking-table__team th {
+  border-bottom: 1px solid brown;
+  padding: 20px 40px;
+  text-align: left;
+  font-size: 20px;
+}
+
+.ranking-table__team td {
+  border-bottom: 1px solid brown;
+  padding: 10px 40px;
+  font-size: 18px;
+}
