@@ -1,0 +1,74 @@
+.race-detail {
+  width: 1200px;
+  padding: 30px;
+  margin: 20px auto;
+}
+
+.race-detail__flag {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid gray;
+  margin-right: 10px;
+}
+
+.race-detail__title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.race-detail__circuit-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0px 0px 5px gray;
+  border-radius: 12px;
+  margin-bottom: 40px;
+  padding: 10px;
+}
+
+.race-detail__circuit-section li {
+  font-size: 20px;
+  font-weight: 500;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  color: black;
+  margin-right: 30px;
+  padding: 10px;
+}
+
+.race-detail__circuit-image {
+  width: 500px;
+  height: 300px;
+  margin: 70px 100px 70px 0px;
+}
+
+.race-detail__tab {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  background-color: rgb(162, 162, 162);
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.race-detail__button {
+  width: 75%;
+  padding: 16px;
+  border: none;
+  background-color: rgb(162, 162, 162);
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 6px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.race-detail__button--active {
+  background-color: #d6d6d6;
+}
