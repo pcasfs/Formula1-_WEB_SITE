@@ -1,0 +1,59 @@
+.driver-detail {
+  margin: 0 auto;
+}
+
+.driver-detail__profile {
+  width: 1000px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0px 0px 5px gray;
+  margin: 30px auto;
+  padding: 30px;
+}
+
+.driver-detail__image {
+  width: 300px;
+  height: 400px;
+}
+
+.driver-detail__summary {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  box-shadow: 0px 0px 5px gray;
+  background-color: whitesmoke;
+  padding: 30px;
+}
+
+.driver-detail__label {
+  font-size: 20px;
+}
+
+.driver-detail__value {
+  font-size: 24px;
+  padding-bottom: 20px;
+  font-weight: 500;
+}
+
+.driver-detail p {
+  width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid tan;
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 35px;
+}
+
+.driver-detail__summary h2 {
+  font-size: 30px;
+  text-shadow: 2px 2px 3px rgb(210, 125, 125);
+}
