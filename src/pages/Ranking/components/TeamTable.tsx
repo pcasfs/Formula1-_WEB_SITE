@@ -1,11 +1,13 @@
+import { Link } from "react-router-dom";
 import type { TeamData } from "../../../api/f1/Ranking/RankingTeams/entity";
 import styles from "./TeamTable.module.css";
 
 type TeamDataProps = {
   teamData: TeamData[];
+  season: number;
 };
 
-export default function TeamTable({ teamData }: TeamDataProps) {
+export default function TeamTable({ teamData, season }: TeamDataProps) {
   return (
     <table className={styles["ranking-table__team"]}>
       <thead>
@@ -21,8 +23,10 @@ export default function TeamTable({ teamData }: TeamDataProps) {
             <td>{team.position}</td>
             <td>
               <div className={styles["ranking-table__team-info"]}>
-                <img src={team.team.logo} alt={team.team.name} />
-                <span>{team.team.name}</span>
+                <Link to={`/teams/${team.team.id}?season=${season}`}>
+                  <img src={team.team.logo} alt={team.team.name} />
+                  <span>{team.team.name}</span>
+                </Link>
               </div>
             </td>
             <td>{team.points}</td>

@@ -1,15 +1,13 @@
-import { Link, useNavigate } from "react-router-dom";
-import f1__logo from "../../asset/image/f1__logo.jpg";
+import { Link } from "react-router-dom";
+import f1__logo from "../../asset/images/f1__logo.jpg";
 import styles from "./Header.module.css";
 
 export default function Header() {
-  const navigate = useNavigate();
-
   return (
     <div className={styles.header}>
-      <button onClick={() => navigate("/")}>
+      <Link to={"/"}>
         <img className={styles["header__logo"]} src={f1__logo} alt="f1 logo" />
-      </button>
+      </Link>
 
       <nav className={styles["header__menu"]}>
         <Link className={styles["header__menu-link"]} to="/drivers">

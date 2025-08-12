@@ -1,9 +1,19 @@
 import useGetStartingGridResult from "../hooks/useGetStartingGridResult";
 import styles from "../../../components/Table/CommonTable.module.css";
+import TableSkeletons from "../skeletons/TableSkeleton";
+import { Link } from "react-router-dom";
+import { CURRENT_YEAR } from "../../../constants/currentYear";
 
 export default function StartingGridTable({ raceId }: { raceId: number }) {
-  const { data: startingGridData } = useGetStartingGridResult(raceId);
-  console.log(startingGridData);
+  const {
+    data: startingGridData,
+    isLoading,
+    isError,
+  } = useGetStartingGridResult(raceId);
+
+  if (isError) return <div>오류 발생!</div>;
+  if (isLoading) return <TableSkeletons />;
+
   return (
     <table className={styles["ranking-table"]}>
       <thead>
@@ -20,11 +30,19 @@ export default function StartingGridTable({ raceId }: { raceId: number }) {
             <td>{driver.position}</td>
             <td>
               <div className={styles["ranking-table__driver-info"]}>
-                <img src={driver.driver.image} alt={driver.driver.name} />
-                <span>{driver.driver.name}</span>
+                <Link
+                  to={`/drivers/${driver.driver.id}?season=${CURRENT_YEAR}`}
+                >
+                  <img src={driver.driver.image} alt={driver.driver.name} />
+                  <span>{driver.driver.name}</span>
+                </Link>
               </div>
             </td>
-            <td>{driver.team.name}</td>
+            <td>
+              <Link to={`/teams/${driver.team.id}?season=${CURRENT_YEAR}`}>
+                {driver.team.name}
+              </Link>
+            </td>
             <td>{driver.time}</td>
           </tr>
         ))}

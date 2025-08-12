@@ -1,9 +1,11 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FlagImage from "../../components/FlagImage/FlagImage";
 import useGetRaceSchedules from "../../hooks/useGetRaceSchedules";
 import styles from "./RaceSchedules.module.css";
 import { useRaceScheduleStore } from "../../store/useRaceScheduleStore";
 import { useEffect, useRef } from "react";
+import RaceSchedulesSkeleton from "./skeletons/RaceSchedulesSkeleton";
+import { FALLBACK_IMAGES } from "../../constants/fallbackImages";
 
 export default function RaceSchedules() {
   const navigate = useNavigate();
@@ -11,7 +13,7 @@ export default function RaceSchedules() {
   const nextRaceCardRef = useRef<HTMLDivElement | null>(null);
 
   const { nowRace, nextRace, setRaceStatus } = useRaceScheduleStore();
-  const { data: raceScheduleData, isLoading } = useGetRaceSchedules();
+  const { data: raceScheduleData, isLoading, isError } = useGetRaceSchedules();
 
   useEffect(() => {
     if (!nowRace && !nextRace && raceScheduleData) {
@@ -19,7 +21,8 @@ export default function RaceSchedules() {
     }
   }, [raceScheduleData, nowRace, nextRace, setRaceStatus]);
 
-  if (isLoading || !raceScheduleData) return <div>Loading...</div>;
+  if (isError) return <div>오류 발생!</div>;
+  if (isLoading || !raceScheduleData) return <RaceSchedulesSkeleton />;
 
   const groupedRaces = raceScheduleData.reduce((acc, cur) => {
     const key = cur.circuit.name;
@@ -79,20 +82,19 @@ export default function RaceSchedules() {
                 {RaceSession?.competition.name}
               </h2>
               <p>서킷: {RaceSession?.circuit.name}</p>
-              <button
+              <Link
+                to={`/race/${RaceSession?.id}?circuitId=${RaceSession?.circuit?.id}&status=${RaceSession?.status}`}
                 className={styles["race-schedules__circuit-button"]}
-                onClick={() =>
-                  navigate(
-                    `/race/${RaceSession?.id}?circuitId=${RaceSession?.circuit?.id}&status=${RaceSession?.status}`
-                  )
-                }
               >
                 <img
                   className={styles["race-schedules__circuit-image"]}
-                  src={RaceSession?.circuit.image}
+                  src={RaceSession?.circuit.image ?? FALLBACK_IMAGES.circuit}
+                  onError={(e) => {
+                    e.currentTarget.src = FALLBACK_IMAGES.circuit;
+                  }}
                   alt={RaceSession?.circuit.name}
                 />
-              </button>
+              </Link>
               <ul className={styles["race-schedules__sessions-info"]}>
                 {sessions.map((session) => (
                   <li key={session.id}>

@@ -1,11 +1,13 @@
+import { Link } from "react-router-dom";
 import type { DriverData } from "../../../api/f1/Ranking/RankingDrivers/entity";
 import styles from "../../../components/Table/CommonTable.module.css";
 
 type DriverDataProps = {
   driverData: DriverData[];
+  season: number;
 };
 
-export default function DriverTable({ driverData }: DriverDataProps) {
+export default function DriverTable({ driverData, season }: DriverDataProps) {
   return (
     <table className={styles["ranking-table"]}>
       <thead>
@@ -23,11 +25,17 @@ export default function DriverTable({ driverData }: DriverDataProps) {
             <td>{driver.position}</td>
             <td>
               <div className={styles["ranking-table__driver-info"]}>
-                <img src={driver.driver.image} alt={driver.driver.name} />
-                <span>{driver.driver.name}</span>
+                <Link to={`/drivers/${driver.driver.id}?season=${season}`}>
+                  <img src={driver.driver.image} alt={driver.driver.name} />
+                  <span>{driver.driver.name}</span>
+                </Link>
               </div>
             </td>
-            <td>{driver.team.name}</td>
+            <td>
+              <Link to={`/teams/${driver.team.id}?season=${season}`}>
+                {driver.team.name}
+              </Link>
+            </td>
             <td>{driver.points ?? 0}</td>
             <td>{driver.wins}</td>
           </tr>
