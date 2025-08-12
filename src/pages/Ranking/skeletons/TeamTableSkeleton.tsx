@@ -19,8 +19,8 @@ export default function TeamTableSkeleton() {
             </td>
             <td>
               <div className={styles["ranking-table__team-info"]}>
-                <Skeleton width={230} height={100} />
-                <Skeleton width={80} height={20} />
+                <Skeleton width="70%" height={70} />
+                <Skeleton width={80} height={20} margin="0 0 0 10px" />
               </div>
             </td>
             <td>

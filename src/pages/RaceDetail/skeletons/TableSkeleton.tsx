@@ -1,16 +1,29 @@
 import Skeleton from "../../../components/Skeletons/Skeletons";
 import styles from "../../../components/Table/CommonTable.module.css";
 
-export default function DriverTableSkeleton() {
+export default function TableSkeletons() {
   return (
     <table className={styles["ranking-table"]}>
       <thead>
         <tr>
-          <th>순위</th>
-          <th>드라이버</th>
-          <th>팀</th>
-          <th>포인트</th>
-          <th>우승</th>
+          <th>
+            <Skeleton width={20} height={16} />
+          </th>
+          <th>
+            <Skeleton width={40} height={16} />
+          </th>
+          <th>
+            <Skeleton width={10} height={16} />
+          </th>
+          <th>
+            <Skeleton width={20} height={16} />
+          </th>
+          <th>
+            <Skeleton width={10} height={16} />
+          </th>
+          <th>
+            <Skeleton width={40} height={16} />
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -33,6 +46,9 @@ export default function DriverTableSkeleton() {
             </td>
             <td>
               <Skeleton width={30} height={16} />
+            </td>
+            <td>
+              <Skeleton width={20} height={16} />
             </td>
           </tr>
         ))}
