@@ -1,0 +1,85 @@
+.team-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 40px;
+  padding: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.team-card {
+  max-width: 600px;
+  width: 100%;
+  border: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 12px;
+  box-shadow: 0px 0px 5px gray;
+  cursor: pointer;
+  background-color: rgb(228, 225, 225);
+  padding: 20px;
+}
+
+.team-card:hover {
+  transform: translateY(-10px);
+  transition: transform 0.2s ease;
+}
+
+.team-card h2 {
+  font-weight: 600;
+  font-size: 30px;
+}
+
+.team-card__drivers {
+  display: flex;
+  flex-direction: row;
+  margin: 15px 0;
+}
+
+.driver-profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-right: 20px;
+  background-color: rgb(228, 225, 225);
+}
+
+.driver-profile:hover {
+  color: rgb(112, 112, 112);
+}
+
+.driver-profile img {
+  width: 30px;
+  height: 30px;
+  background-color: aliceblue;
+  border-radius: 50%;
+}
+
+.team-card__car-image {
+  width: 88%;
+  height: auto;
+}
+
+.team-card--skeleton {
+  box-shadow: 0px 0px 5px rgb(164, 164, 164);
+  height: 257px;
+  padding: 0;
+}
+
+@media (max-width: 1024px) {
+  .team-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .team-list {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .team-card__drivers {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
