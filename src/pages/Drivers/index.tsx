@@ -3,6 +3,7 @@ import Skeletons from "../../components/Skeletons/Skeletons";
 import { Link } from "react-router-dom";
 import useGetRankingDrivers from "../../hooks/useGetRankingDrivers";
 import { CURRENT_YEAR } from "../../constants/currentYear";
+import { FALLBACK_IMAGES } from "../../constants/fallbackImages";
 
 export default function Drivers() {
   const {
@@ -43,7 +44,10 @@ export default function Drivers() {
           </header>
           <img
             className={styles["driver-card__image"]}
-            src={driver.driver.image}
+            src={driver.driver.image ?? FALLBACK_IMAGES.driver}
+            onError={(e) => {
+              e.currentTarget.src = FALLBACK_IMAGES.driver;
+            }}
             alt={driver.driver.name}
           />
           <p className={styles["driver-card__team"]}>팀: {driver.team.name}</p>

@@ -39,6 +39,9 @@ export default function RaceDetail() {
         <img
           className={styles["race-detail__circuit-image"]}
           src={circuitData?.image ?? FALLBACK_IMAGES.circuit}
+          onError={(e) => {
+            e.currentTarget.src = FALLBACK_IMAGES.circuit;
+          }}
           alt={circuitData?.name ?? "정보 없음"}
         />
         <ul>

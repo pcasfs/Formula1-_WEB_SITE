@@ -95,7 +95,13 @@ export default function TeamDetail() {
               key={driver.driver.id}
               to={`/drivers/${driver.driver.id}?season=${CURRENT_YEAR}`}
             >
-              <img src={driver.driver.image} alt={driver.driver.name} />
+              <img
+                src={driver.driver.image ?? FALLBACK_IMAGES.driver}
+                onError={(e) => {
+                  e.currentTarget.src = FALLBACK_IMAGES.driver;
+                }}
+                alt={driver.driver.name}
+              />
               <p>{driver.driver.name}</p>
             </Link>
           ))}
@@ -108,6 +114,9 @@ export default function TeamDetail() {
           <img
             className={styles["team-detail__car-image"]}
             src={carImage ?? FALLBACK_IMAGES.car}
+            onError={(e) => {
+              e.currentTarget.src = FALLBACK_IMAGES.car;
+            }}
             alt={teamDetailData?.name ?? "정보 없음"}
           />
           <ul className={styles["team-detail__car-info-list"]}>

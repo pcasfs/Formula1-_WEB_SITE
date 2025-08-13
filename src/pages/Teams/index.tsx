@@ -62,10 +62,18 @@ export default function Teams() {
                     key={driver.driver.id}
                     onClick={(e) => {
                       e.stopPropagation();
-                      navigate(`/drivers/${driver.driver.id}`);
+                      navigate(
+                        `/drivers/${driver.driver.id}?season=${CURRENT_YEAR}`
+                      );
                     }}
                   >
-                    <img src={driver.driver.image} alt={driver.driver.name} />
+                    <img
+                      src={driver.driver.image ?? FALLBACK_IMAGES.driver}
+                      onError={(e) => {
+                        e.currentTarget.src = FALLBACK_IMAGES.driver;
+                      }}
+                      alt={driver.driver.name}
+                    />
                     <span>{driver.driver.name}</span>
                   </div>
                 ))}
@@ -73,6 +81,9 @@ export default function Teams() {
             <img
               className={styles["team-card__car-image"]}
               src={carImage ?? FALLBACK_IMAGES.car}
+              onError={(e) => {
+                e.currentTarget.src = FALLBACK_IMAGES.car;
+              }}
               alt={team.team.name}
             />
           </div>

@@ -3,6 +3,7 @@ import useGetDriverDetail from "./hooks/useGetDriversDetail";
 import styles from "./DriverDetail.module.css";
 import DriverDetailSkeleton from "./skeletons/DriverDetailSkeleton";
 import useGetRankingDrivers from "../../hooks/useGetRankingDrivers";
+import { FALLBACK_IMAGES } from "../../constants/fallbackImages";
 
 export default function DriverDetail() {
   const { id } = useParams<{ id: string }>();
@@ -20,6 +21,7 @@ export default function DriverDetail() {
     isLoading: isDriverDetailLoading,
     isError: isDriverDetailError,
   } = useGetDriverDetail(driverId);
+
   const rankingData = driverData?.find((item) => item.driver.id === driverId);
 
   const driverTeam = driverDetailData?.teams?.find(
@@ -33,7 +35,10 @@ export default function DriverDetail() {
       <section className={styles["driver-detail__profile"]}>
         <img
           className={styles["driver-detail__image"]}
-          src={driverDetailData?.image}
+          src={driverDetailData?.image ?? FALLBACK_IMAGES.driver}
+          onError={(e) => {
+            e.currentTarget.src = FALLBACK_IMAGES.driver;
+          }}
           alt={driverDetailData?.name}
         />
         <div>
