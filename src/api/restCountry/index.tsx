@@ -1,7 +1,7 @@
 import { COUNTRY_BASE_URL } from "../../constants/countryApi";
 import type { CountryData } from "./entity";
 
-async function fetchCountryFlag(countryName: string): Promise<CountryData> {
+async function fetchCountryFlag(countryName: string): Promise<string | null> {
   const url = `${COUNTRY_BASE_URL}name/${countryName}`;
   try {
     const res = await fetch(url);
@@ -9,9 +9,7 @@ async function fetchCountryFlag(countryName: string): Promise<CountryData> {
       throw new Error(`HTTP 오류 ${res.status}`);
     }
     const data = await res.json();
-    if (data.error) {
-      throw new Error(`API 오류 ${data.error}`);
-    }
+
     const normalizedCountryName =
       countryName === "USA" ? "United States" : countryName;
 

@@ -19,4 +19,14 @@ export type DriverDetailData = {
   };
   highest_grid_position: number;
   career_points: string;
+  teams: DriverTeam[];
+};
+
+type DriverTeam = {
+  season: number;
+  team: {
+    id: number;
+    name: string;
+    logo: string;
+  };
 };

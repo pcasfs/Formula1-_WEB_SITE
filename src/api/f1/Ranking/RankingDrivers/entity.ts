@@ -6,6 +6,7 @@ export type DriverData = {
     image: string;
   };
   team: {
+    id: number;
     name: string;
     logo: string;
   };
