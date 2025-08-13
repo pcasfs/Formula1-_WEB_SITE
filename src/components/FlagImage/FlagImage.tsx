@@ -2,12 +2,12 @@ import useGetCountryFlag from "../../hooks/useGetCountryFlag";
 import styles from "../Skeletons/Skeletons.module.css";
 
 type FlagImageProps = {
-  countryName: string;
+  countryName?: string;
   className?: string;
 };
 
 export default function FlagImage({ countryName, className }: FlagImageProps) {
-  const { data: flagUrl, isLoading } = useGetCountryFlag(countryName);
+  const { data: flagUrl, isLoading } = useGetCountryFlag(countryName ?? "");
 
   if (!countryName || isLoading) {
     return <div className={`${className} ${styles.skeletons}`} />;
