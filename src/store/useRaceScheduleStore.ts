@@ -6,6 +6,9 @@ type RaceSummary = {
   gpName: string;
   countryName: string;
   dateRange: string;
+  raceId?: number;
+  circuitId?: number;
+  status?: string;
 };
 
 type RaceScheduleState = {
@@ -38,10 +41,18 @@ export const useRaceScheduleStore = create<RaceScheduleState>((set) => ({
     const isNow = now >= start && now <= end;
     const gpDateRange = getDateRange(start, end);
 
+    const typeRace = gpSessions.find((s) => s.type == "Race");
+    const raceId = typeRace?.id;
+    const circuitId = typeRace?.circuit.id;
+    const status = typeRace?.status;
+
     const currentRace: RaceSummary = {
       gpName: gpName,
       countryName: country,
       dateRange: gpDateRange,
+      raceId: raceId,
+      circuitId: circuitId,
+      status: status,
     };
 
     //Next Race
@@ -64,10 +75,18 @@ export const useRaceScheduleStore = create<RaceScheduleState>((set) => ({
         const start = new Date(Math.min(...dates));
         const end = new Date(Math.max(...dates));
 
+        const typeRace = nextNextSessions.find((s) => s.type == "Race");
+        const raceId = typeRace?.id;
+        const circuitId = typeRace?.circuit.id;
+        const status = typeRace?.status;
+
         nextRace = {
           gpName: nextNextGpName,
           countryName: nextNexCountry,
           dateRange: getDateRange(start, end),
+          raceId: raceId,
+          circuitId: circuitId,
+          status: status,
         };
       }
     } else {
@@ -96,10 +115,18 @@ export const useRaceScheduleStore = create<RaceScheduleState>((set) => ({
       const start = new Date(Math.min(...upcomingDates));
       const end = new Date(Math.max(...upcomingDates));
 
+      const typeRace = upcomingSessions.find((s) => s.type == "Race");
+      const raceId = typeRace?.id;
+      const circuitId = typeRace?.circuit.id;
+      const status = typeRace?.status;
+
       upcomingRace = {
         gpName: upcomingGpName,
         countryName: upcomingCountry,
         dateRange: getDateRange(start, end),
+        raceId: raceId,
+        circuitId: circuitId,
+        status: status,
       };
     }
 
@@ -121,10 +148,18 @@ export const useRaceScheduleStore = create<RaceScheduleState>((set) => ({
       const prevStart = new Date(Math.min(...previousDates));
       const prevEnd = new Date(Math.max(...previousDates));
 
+      const typeRace = previousSessions.find((s) => s.type == "Race");
+      const raceId = typeRace?.id;
+      const circuitId = typeRace?.circuit.id;
+      const status = typeRace?.status;
+
       previousRace = {
         gpName: previousGpName,
         countryName: previousCountry,
         dateRange: getDateRange(prevStart, prevEnd),
+        raceId: raceId,
+        circuitId: circuitId,
+        status: status,
       };
     }
 
