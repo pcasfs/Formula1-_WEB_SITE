@@ -10,6 +10,7 @@
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 40px;
   max-width: 1400px;
+  width: 100%;
   margin: 0px auto;
 }
 
@@ -49,7 +50,7 @@
   border-radius: 12px;
   box-shadow: 0px 0px 5px gray;
   background-color: white;
-  padding: 20px;
+  padding: 25px;
 }
 
 .race-schedules__card-round {
@@ -64,11 +65,13 @@
 .race-schedules__badge--now,
 .race-schedules__badge--next {
   width: 100px;
-  height: 30px;
+  height: 40px;
   border-radius: 12px;
   font-size: 18px;
-  text-align: center;
   font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .race-schedules__badge--now {
@@ -156,6 +159,7 @@
 
 @media (max-width: 768px) {
   .race-schedules {
+    max-width: 470px;
     grid-template-columns: 1fr;
     gap: 12px;
   }

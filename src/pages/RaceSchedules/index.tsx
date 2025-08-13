@@ -64,14 +64,14 @@ export default function RaceSchedules() {
               <div className={styles["race-schedules__card-round"]}>
                 <h1>Round {round++}</h1>
                 {isNowRace && (
-                  <span className={styles["race-schedules__badge--now"]}>
-                    Now
-                  </span>
+                  <div className={styles["race-schedules__badge--now"]}>
+                    <span>Now</span>
+                  </div>
                 )}
                 {isNextRace && (
-                  <span className={styles["race-schedules__badge--next"]}>
-                    Next
-                  </span>
+                  <div className={styles["race-schedules__badge--next"]}>
+                    <span>Next</span>
+                  </div>
                 )}
               </div>
               <h2>
