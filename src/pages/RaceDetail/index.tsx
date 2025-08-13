@@ -6,6 +6,8 @@ import StartingGridTable from "./components/StartingGridTable";
 import FastestLabTable from "./components/FastestLabTable";
 import { useState } from "react";
 import styles from "./RaceDetail.module.css";
+import RaceDetailSkeleton from "./skeletons/RaceDetailSkeleton";
+import { FALLBACK_IMAGES } from "../../constants/fallbackImages";
 
 export default function RaceDetail() {
   const [tab, setTab] = useState<"race" | "fastestLab" | "startingGrid">(
@@ -18,7 +20,10 @@ export default function RaceDetail() {
   const circuitId = Number(searchParams.get("circuitId"));
   const status = searchParams.get("status");
 
-  const { data: circuitData } = useGetCircuit(circuitId);
+  const { data: circuitData, isLoading, isError } = useGetCircuit(circuitId);
+
+  if (isError) return <div>오류 발생!</div>;
+  if (isLoading) return <RaceDetailSkeleton />;
 
   return (
     <div className={styles["race-detail"]}>
@@ -27,45 +32,60 @@ export default function RaceDetail() {
           className={styles["race-detail__flag"]}
           countryName={circuitData?.competition.location.country}
         />
-        <h1>{circuitData?.name}</h1>
+        <h1>{circuitData?.name ?? "정보 없음"}</h1>
       </div>
 
       <section className={styles["race-detail__circuit-section"]}>
         <img
           className={styles["race-detail__circuit-image"]}
-          src={circuitData?.image}
-          alt={circuitData?.name}
+          src={circuitData?.image ?? FALLBACK_IMAGES.circuit}
+          alt={circuitData?.name ?? "정보 없음"}
         />
         <ul>
           <li>
             <span>한 바퀴 거리:</span>
-            <span>{circuitData?.length}</span>
+            <span>{circuitData?.length ?? "정보 없음"}</span>
           </li>
           <li>
             <span>총 거리:</span>
-            <span>{circuitData?.race_distance}</span>
+            <span>{circuitData?.race_distance ?? "정보 없음"}</span>
           </li>
           <li>
             <span>랩 수:</span>
-            <span>{circuitData?.laps}</span>
+            <span>
+              {circuitData?.laps != null ? circuitData.laps : "정보 없음"}
+            </span>
           </li>
           <li>
             <span>최고 랩타임:</span>
             <span>
-              {circuitData?.lap_record.time} ({circuitData?.lap_record.driver})
+              {circuitData?.lap_record?.time ?? "정보 없음"}
+              <p>({circuitData?.lap_record?.driver ?? "정보 없음"})</p>
             </span>
           </li>
           <li>
             <span>관중 수용 인원:</span>
-            <span>{circuitData?.capacity?.toLocaleString()}명</span>
+            <span>
+              {circuitData?.capacity != null
+                ? `${circuitData.capacity.toLocaleString()}명`
+                : "정보 없음"}
+            </span>
           </li>
           <li>
             <span>최초 개최:</span>
-            <span>{circuitData?.first_grand_prix}년</span>
+            <span>
+              {circuitData?.first_grand_prix != null
+                ? `${circuitData.first_grand_prix}년`
+                : "정보 없음"}
+            </span>
           </li>
           <li>
             <span>서킷 개장 연도:</span>
-            <span>{circuitData?.opened}년</span>
+            <span>
+              {circuitData?.opened != null
+                ? `${circuitData.opened}년`
+                : "정보 없음"}
+            </span>
           </li>
           <li>
             <span>소유주:</span>
