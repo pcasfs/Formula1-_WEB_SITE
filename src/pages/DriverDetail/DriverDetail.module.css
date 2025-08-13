@@ -1,9 +1,11 @@
 .driver-detail {
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .driver-detail__profile {
-  width: 1000px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -12,48 +14,82 @@
   background-color: white;
   border-radius: 12px;
   box-shadow: 0px 0px 5px gray;
-  margin: 30px auto;
   padding: 30px;
+  margin: 40px;
 }
 
 .driver-detail__image {
-  width: 300px;
-  height: 400px;
+  width: 360px;
+  height: 380px;
 }
 
-.driver-detail__summary {
+.driver-detail__sections {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   box-shadow: 0px 0px 5px gray;
   background-color: whitesmoke;
   padding: 30px;
+  width: 100%;
 }
 
 .driver-detail__label {
-  font-size: 20px;
+  font-size: 18px;
+  margin-top: 5px;
 }
 
 .driver-detail__value {
   font-size: 24px;
-  padding-bottom: 20px;
   font-weight: 500;
 }
 
-.driver-detail p {
+.driver-detail__info-list {
   width: 500px;
+  margin: 15px;
+}
+
+.driver-detail__info-list li {
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid tan;
   font-weight: 500;
+  padding: 15px 0 10px 0;
 }
 
-h1 {
+.driver-detail__profile h1 {
   font-size: 35px;
 }
 
-.driver-detail__summary h2 {
+.driver-detail__sections h2 {
   font-size: 30px;
   text-shadow: 2px 2px 3px rgb(210, 125, 125);
+  margin: 15px;
+}
+
+@media (max-width: 1024px) {
+  .driver-detail__profile {
+    flex-direction: column;
+    width: 90%;
+  }
+
+  .driver-detail__sections {
+    flex-direction: column;
+    align-items: center;
+    box-shadow: none;
+  }
+
+  .driver-detail__sections section {
+    box-shadow: 0px 0px 5px gray;
+    background-color: whitesmoke;
+    border-radius: 12px;
+    padding: 30px;
+    margin: 15px auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .driver-detail__info-list {
+    width: 100%;
+  }
 }

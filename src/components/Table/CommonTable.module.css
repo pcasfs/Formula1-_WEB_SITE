@@ -17,10 +17,48 @@
   padding: 20px 40px;
   text-align: left;
   font-size: 20px;
+  white-space: nowrap;
 }
 
 .ranking-table td {
   border-bottom: 1px solid brown;
   padding: 20px 40px;
   font-size: 18px;
+}
+
+@media (max-width: 1100px) {
+  .ranking-table th {
+    padding: 10px 20px;
+    font-size: 18px;
+  }
+  .ranking-table td {
+    padding: 10px 20px;
+    font-size: 16 px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ranking-table__driver-info img {
+    width: 25px;
+    height: 25px;
+  }
+  .ranking-table th {
+    padding: 7px 15px;
+    font-size: 15px;
+  }
+  .ranking-table td {
+    padding: 7px 15px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .ranking-table th {
+    padding: 3px;
+    font-size: 12px;
+  }
+  .ranking-table td {
+    padding: 3px;
+    font-size: 12px;
+  }
 }
