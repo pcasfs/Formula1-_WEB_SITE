@@ -1,22 +1,41 @@
 import useGetRankingDrivers from "../../hooks/useGetRankingDrivers";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Ranking.module.css";
 import useGetRankingTeams from "../../hooks/useGetRankingTeams";
 import DriverTable from "./components/DriverTable";
 import TeamTable from "./components/TeamTable";
 import DriverTableSkeleton from "./skeletons/DriverTableSkeleton";
 import TeamTableSkeleton from "./skeletons/TeamTableSkeleton";
+import { useSearchParams } from "react-router-dom";
+import { CURRENT_YEAR } from "../../constants/currentYear";
 
 export default function Ranking() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialSeason = Number(searchParams.get("season")) || CURRENT_YEAR;
+
   const [tab, setTab] = useState<"driver" | "team">("driver");
 
-  const [season, setSeason] = useState(2025);
-  const options = [2025, 2024, 2023, 2022, 2021];
+  const [season, setSeason] = useState(initialSeason);
+  const options = Array.from({ length: 10 }, (_, idx) => CURRENT_YEAR - idx);
 
-  const { data: driverData, isLoading: isDriverLoading } =
-    useGetRankingDrivers(season);
-  const { data: teamData, isLoading: isTeamLoading } =
-    useGetRankingTeams(season);
+  useEffect(() => {
+    const next = new URLSearchParams(searchParams);
+    next.set("season", String(season));
+    setSearchParams(next, { replace: true });
+  }, [season, searchParams, setSearchParams]);
+
+  const {
+    data: driverData,
+    isLoading: isDriverLoading,
+    isError: isDriverError,
+  } = useGetRankingDrivers(season);
+  const {
+    data: teamData,
+    isLoading: isTeamLoading,
+    isError: isTeamError,
+  } = useGetRankingTeams(season);
+
+  if (isDriverError || isTeamError) return <div>오류 발생!</div>;
 
   return (
     <div className={styles["ranking-page"]}>
@@ -62,12 +81,12 @@ export default function Ranking() {
         isDriverLoading ? (
           <DriverTableSkeleton />
         ) : (
-          <DriverTable driverData={driverData!} />
+          <DriverTable season={season} driverData={driverData!} />
         )
       ) : isTeamLoading ? (
         <TeamTableSkeleton />
       ) : (
-        <TeamTable teamData={teamData!} />
+        <TeamTable season={season} teamData={teamData!} />
       )}
     </div>
   );
