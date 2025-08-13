@@ -6,6 +6,8 @@ import Header from "./components/Header/Header";
 import Ranking from "./pages/Ranking";
 import RaceSchedules from "./pages/RaceSchedules";
 import RaceDetail from "./pages/RaceDetail";
+import Teams from "./pages/Teams";
+import TeamDetail from "./pages/TeamDetail";
 
 function DefaultLayout() {
   return (
@@ -24,6 +26,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path="drivers" element={<Drivers />} />
           <Route path="drivers/:id" element={<DriverDetail />} />
+          <Route path="teams" element={<Teams />} />
+          <Route path="teams/:id" element={<TeamDetail />} />
           <Route path="ranking" element={<Ranking />} />
           <Route path="schedule" element={<RaceSchedules />} />
           <Route path="race/:id" element={<RaceDetail />} />
