@@ -35,7 +35,12 @@
   box-shadow: 0px 0px 5px black;
   background-color: #2e2e2e;
   width: 300px;
-  height: 250px;
+  height: 100%;
+}
+
+.schedule-summary__card:hover {
+  transform: translateY(-10px);
+  transition: transform 0.2s ease;
 }
 
 .schedule-summary__card--highlight {
@@ -54,6 +59,7 @@
 .schedule-summary__FlagImage {
   width: 200px;
   height: 120px;
+  margin-top: 6px;
 }
 
 .schedule-summary__date-range {
