@@ -16,6 +16,7 @@ type RaceScheduleState = {
   nextRace: RaceSummary | null;
   upcomingRace: RaceSummary | null;
   previousRace: RaceSummary | null;
+  nextSession: RaceData | null;
   setRaceStatus: (sessions: RaceData[]) => void;
 };
 
@@ -24,6 +25,7 @@ export const useRaceScheduleStore = create<RaceScheduleState>((set) => ({
   nextRace: null,
   upcomingRace: null,
   previousRace: null,
+  nextSession: null,
 
   setRaceStatus: (sessions) => {
     const now = new Date();
@@ -168,6 +170,7 @@ export const useRaceScheduleStore = create<RaceScheduleState>((set) => ({
       nextRace,
       upcomingRace,
       previousRace,
+      nextSession,
     });
   },
 }));

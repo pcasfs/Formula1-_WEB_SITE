@@ -1,5 +1,5 @@
 import Skeleton from "../../../components/Skeletons/Skeletons";
-import styles from "../Home.module.css";
+import styles from "../components/HomeSchedules.module.css";
 
 export default function HomeSkeleton() {
   return (

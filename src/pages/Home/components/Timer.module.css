@@ -1,0 +1,32 @@
+.countdown {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.countdown h2 {
+  font-size: 28px;
+}
+
+.countdown__list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(70px, 1fr));
+  gap: 30px;
+}
+
+.countdown__list li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.countdown__value {
+  font-size: 50px;
+  font-weight: 700;
+}
+
+.countdown__unit {
+  font-size: 24px;
+}
