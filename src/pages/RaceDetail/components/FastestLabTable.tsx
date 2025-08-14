@@ -3,6 +3,7 @@ import styles from "../../../components/Table/CommonTable.module.css";
 import TableSkeletons from "../skeletons/TableSkeleton";
 import { Link } from "react-router-dom";
 import { CURRENT_YEAR } from "../../../constants/currentYear";
+import { FALLBACK_IMAGES } from "../../../constants/fallbackImages";
 
 export default function FastestLabTable({ raceId }: { raceId: number }) {
   const {
@@ -35,7 +36,13 @@ export default function FastestLabTable({ raceId }: { raceId: number }) {
                 <Link
                   to={`/drivers/${driver.driver.id}?season=${CURRENT_YEAR}`}
                 >
-                  <img src={driver.driver.image} alt={driver.driver.name} />
+                  <img
+                    src={driver.driver.image ?? FALLBACK_IMAGES.driver}
+                    onError={(e) => {
+                      e.currentTarget.src = FALLBACK_IMAGES.driver;
+                    }}
+                    alt={driver.driver.name}
+                  />
                   <span>{driver.driver.name}</span>
                 </Link>
               </div>

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import type { DriverData } from "../../../api/f1/Ranking/RankingDrivers/entity";
 import styles from "../../../components/Table/CommonTable.module.css";
+import { FALLBACK_IMAGES } from "../../../constants/fallbackImages";
 
 type DriverDataProps = {
   driverData: DriverData[];
@@ -26,7 +27,13 @@ export default function DriverTable({ driverData, season }: DriverDataProps) {
             <td>
               <div className={styles["ranking-table__driver-info"]}>
                 <Link to={`/drivers/${driver.driver.id}?season=${season}`}>
-                  <img src={driver.driver.image} alt={driver.driver.name} />
+                  <img
+                    src={driver.driver.image ?? FALLBACK_IMAGES.driver}
+                    onError={(e) => {
+                      e.currentTarget.src = FALLBACK_IMAGES.driver;
+                    }}
+                    alt={driver.driver.name}
+                  />
                   <span>{driver.driver.name}</span>
                 </Link>
               </div>
