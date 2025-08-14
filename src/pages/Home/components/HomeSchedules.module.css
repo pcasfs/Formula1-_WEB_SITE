@@ -20,8 +20,9 @@
 }
 
 .schedule-summary__title {
-  margin: 20px 0;
-  color: white;
+  margin: 20px 8px;
+  color: black;
+  color: whitesmoke;
 }
 
 .schedule-summary__card {
@@ -34,7 +35,7 @@
   cursor: pointer;
   border-radius: 12px;
   box-shadow: 0px 0px 5px rgb(211, 231, 255);
-  background-color: #dfdfdf;
+  background-color: #2e2e2eac;
   width: 300px;
   height: 100%;
 }
@@ -54,7 +55,7 @@
 .schedule-summary__gp-name {
   font-size: 24px;
   font-weight: 600;
-  color: black;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .schedule-summary__FlagImage {
@@ -65,7 +66,20 @@
 
 .schedule-summary__date-range {
   font-size: 22px;
-  color: black;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 1210px) {
+  .schedule-summary__card {
+    background-color: #2e2e2e;
+  }
+  .schedule-summary__gp-name,
+  .schedule-summary__date-range {
+    color: white;
+  }
+  .schedule-summary__title {
+    color: black;
+  }
 }
 
 @media (max-width: 768px) {

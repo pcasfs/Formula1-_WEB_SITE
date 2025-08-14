@@ -30,3 +30,10 @@
 .countdown__unit {
   font-size: 24px;
 }
+
+@media (max-width: 1210px) {
+  .countdown {
+    color: rgb(0, 0, 120);
+    padding: 20px;
+  }
+}
