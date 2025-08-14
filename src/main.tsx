@@ -15,7 +15,7 @@ const queryClient = new QueryClient({
   },
 });
 createRoot(document.getElementById("root")!).render(
-  <BrowserRouter>
+  <BrowserRouter basename="/Formula1-_WEB_SITE">
     <ScrollToTop />
     <QueryClientProvider client={queryClient}>
       <App />
