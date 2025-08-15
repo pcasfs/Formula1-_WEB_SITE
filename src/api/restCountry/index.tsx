@@ -22,7 +22,8 @@ async function fetchCountryFlag(countryName: string): Promise<string | null> {
     return country?.flags?.png ?? null;
   } catch (error) {
     console.error(error);
-    throw new Error(`오류 발생! ${error.message}`);
+    const message = error instanceof Error ? error.message : String(error);
+    throw new Error(`오류 발생! ${message}`);
   }
 }
 

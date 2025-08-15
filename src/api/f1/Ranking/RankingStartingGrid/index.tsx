@@ -17,13 +17,11 @@ async function fetchRankingStartingGrid(
     }
     const data = await res.json();
     console.log(data);
-    if (data.error) {
-      throw new Error(`API 오류 ${data.error}`);
-    }
     return data.response;
   } catch (error) {
     console.error(error);
-    throw new Error(`오류 발생! ${error.message}`);
+    const message = error instanceof Error ? error.message : String(error);
+    throw new Error(`오류 발생! ${message}`);
   }
 }
 
