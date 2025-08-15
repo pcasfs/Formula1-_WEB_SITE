@@ -29,11 +29,11 @@ export default function TeamDetailSkeleton() {
 
         <div className={styles["team-detail__card-right"]}>
           <div className={styles["driver-profile"]}>
-            <Skeletons width={200} height={220} borderRadius={10} />
+            <Skeletons width="100%" height={150} borderRadius={10} />
             <Skeletons width="70%" height={16} margin="8px 0 0 0" />
           </div>
           <div className={styles["driver-profile"]}>
-            <Skeletons width={200} height={220} borderRadius={10} />
+            <Skeletons width="100%" height={150} borderRadius={10} />
             <Skeletons width="70%" height={16} margin="8px 0 0 0" />
           </div>
         </div>
@@ -43,20 +43,20 @@ export default function TeamDetailSkeleton() {
         <section>
           <h2>팀 차량 정보</h2>
           <Skeletons
-            width={500}
+            width="100%"
             height={120}
             borderRadius={12}
             margin="15px 0"
           />
           <ul className={styles["team-detail__car-info-list"]}>
             <li>
-              <Skeletons width="25%" height={18} />
+              <Skeletons width={50} height={18} />
             </li>
             <li>
-              <Skeletons width="35%" height={18} />
+              <Skeletons width={120} height={18} />
             </li>
             <li>
-              <Skeletons width="20%" height={18} />
+              <Skeletons width={80} height={18} />
             </li>
           </ul>
         </section>
