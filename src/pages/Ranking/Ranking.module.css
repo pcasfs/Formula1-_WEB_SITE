@@ -9,15 +9,10 @@
   padding: 50px;
 }
 
-/* .ranking-card {
-  width: 100%;
-} */
-
 .ranking-page__header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-end;
   margin-bottom: 20px;
 }
 
@@ -55,4 +50,10 @@
 
 .ranking-page__button--active {
   background-color: #d6d6d6;
+}
+
+@media (max-width: 480px) {
+  .ranking-page__header h1 {
+    font-size: 20px;
+  }
 }

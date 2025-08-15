@@ -60,12 +60,6 @@ export default function Teams() {
                   <div
                     className={styles["driver-profile"]}
                     key={driver.driver.id}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      navigate(
-                        `/drivers/${driver.driver.id}?season=${CURRENT_YEAR}`
-                      );
-                    }}
                   >
                     <img
                       src={driver.driver.image ?? FALLBACK_IMAGES.driver}
@@ -74,7 +68,16 @@ export default function Teams() {
                       }}
                       alt={driver.driver.name}
                     />
-                    <span>{driver.driver.name}</span>
+                    <span
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(
+                          `/drivers/${driver.driver.id}?season=${CURRENT_YEAR}`
+                        );
+                      }}
+                    >
+                      {driver.driver.name}
+                    </span>
                   </div>
                 ))}
             </div>

@@ -36,6 +36,7 @@
 .driver-detail__label {
   font-size: 18px;
   margin-top: 5px;
+  white-space: nowrap;
 }
 
 .driver-detail__value {
@@ -91,5 +92,31 @@
 @media (max-width: 768px) {
   .driver-detail__info-list {
     width: 100%;
+  }
+  .driver-detail__image {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .header__menu {
+    gap: 18px;
+  }
+  .header__menu-link {
+    font-size: 20px;
+  }
+  .driver-detail__label {
+    font-size: 16px;
+  }
+  .driver-detail__value {
+    font-size: 18px;
+  }
+  .driver-detail__profile h1 {
+    font-size: 30px;
+  }
+  .driver-detail__sections h2 {
+    font-size: 25px;
   }
 }

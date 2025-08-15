@@ -45,7 +45,7 @@
   background-color: rgb(228, 225, 225);
 }
 
-.driver-profile:hover {
+.driver-profile span:hover {
   color: rgb(112, 112, 112);
 }
 
