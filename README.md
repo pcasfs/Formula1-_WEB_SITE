@@ -6,6 +6,12 @@
 
 ---
 
+### 🌐 바로가기 링크
+
+https://pcasfs.github.io/Formula1-_WEB_SITE
+
+---
+
 ### 📌 주요 기능
 
 - **🏁 경기 일정**: `API-Sports`의 Formula 1 API를 사용하여 경기 일정을 제공합니다.
