@@ -42,7 +42,7 @@ export default function Timer() {
       </h2>
       <ul className={styles["countdown__list"]}>
         <li>
-          <span className={styles["countdown__value"]}>{remain.d}</span>
+          <span className={styles["countdown__value"]}>{pad2(remain.d)}</span>
           <span className={styles["countdown__unit"]}>일</span>
         </li>
         <li>
